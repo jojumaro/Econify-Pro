@@ -1,5 +1,6 @@
 Django>=5.0
 djangorestframework
 django-cors-headers
-# Para el manejo de datos financieros (mencionado en 4.4)
-# (Decimal viene en la librería estándar de Python)
+pandas  # Mencionada en 4.6 para exportación Excel
+reportlab  # Mencionada en 4.6 para generación de PDF
+openpyxl  # Necesaria para que Pandas escriba archivos .xlsx
