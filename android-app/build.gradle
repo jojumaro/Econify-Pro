@@ -1,0 +1,25 @@
+// Configuración inicial alineada con la documentación (Sección 4.4)
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' // Uso de Kotlin Nativo
+}
+
+android {
+    namespace 'com.econifypro.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.econifypro.app"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    // Librerías clave mencionadas en el Estado del Arte
+    implementation "com.squareup.retrofit2:retrofit:2.9.0" // Para API REST
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0" 
+    implementation "androidx.core:core-ktx:1.12.0" // Kotlin extensions
+}
