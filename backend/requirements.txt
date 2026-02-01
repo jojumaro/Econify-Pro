@@ -1,6 +1,8 @@
 Django>=5.0
 djangorestframework
 django-cors-headers
-pandas  # Mencionada en 4.6 para exportación Excel
-reportlab  # Mencionada en 4.6 para generación de PDF
-openpyxl  # Necesaria para que Pandas escriba archivos .xlsx
+pandas
+reportlab
+openpyxl
+mysqlclient
+python-dotenv  # Para la seguridad de configuración (Punto 4.8)
