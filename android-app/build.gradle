@@ -1,25 +1,44 @@
-// Configuración inicial alineada con la documentación (Sección 4.4)
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android' // Uso de Kotlin Nativo
+    id 'com.android.application' version '8.2.2'
+    id 'org.jetbrains.kotlin.android' version '2.1.0'
 }
 
 android {
-    namespace 'com.econifypro.app'
+    namespace 'com.jjmr.econifypro'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.econifypro.app"
-        minSdk 26
+        applicationId "com.jjmr.econifypro"
+        minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
     }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
-    // Librerías clave mencionadas en el Estado del Arte
-    implementation "com.squareup.retrofit2:retrofit:2.9.0" // Para API REST
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0" 
-    implementation "androidx.core:core-ktx:1.12.0" // Kotlin extensions
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation "com.google.android.material:material:1.13.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.1"
+    implementation 'androidx.cardview:cardview:1.0.0'
+    // Retrofit para comunicación con el Backend
+    implementation "com.squareup.retrofit2:retrofit:3.0.0"
+    implementation "com.squareup.retrofit2:converter-gson:3.0.0"
+    // MPAndroidChart para gráficos del Dashboard
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

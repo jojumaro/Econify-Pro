@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Tema principal claro -->
+    <style name="Theme.EconifyPro" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryVariant">@color/primary_blue_dark</item>
+        <item name="colorSecondary">@color/secondary_blue</item>
+
+        <!-- Fondo general -->
+        <item name="android:windowBackground">@color/background_light</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/primary_blue</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Tipografías -->
+        <!-- Tipografías -->
+        <!--<item name="android:fontFamily">@font/inter</item>-->
+
+        <!-- Cards -->
+        <item name="materialCardViewStyle">@style/EconifyCard</item>
+
+        <!-- Textos -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+    </style>
+
+    <!-- Estilo de card reutilizable -->
+    <style name="EconifyCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/card_light</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">12dp</item>
+    </style>
+
+</resources>

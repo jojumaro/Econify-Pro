@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Tema oscuro -->
+    <style name="Theme.EconifyPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryVariant">@color/primary_blue_dark</item>
+        <item name="colorSecondary">@color/secondary_blue</item>
+
+        <!-- Fondo general -->
+        <item name="android:windowBackground">@color/background_dark</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Tipografías -->
+        <!--<item name="android:fontFamily">@font/inter</item>-->
+
+        <!-- Cards -->
+        <item name="materialCardViewStyle">@style/EconifyCard.Dark</item>
+
+        <!-- Textos -->
+        <item name="android:textColorPrimary">@color/text_primary_dark</item>
+        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
+
+    </style>
+
+    <!-- Card en modo oscuro -->
+    <style name="EconifyCard.Dark" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/card_dark</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">12dp</item>
+    </style>
+
+</resources>
