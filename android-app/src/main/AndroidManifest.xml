@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jjmr.econifypro">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:roundIcon="@android:drawable/sym_def_app_icon"
+        android:label="Econify Pro"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EconifyPro"
+        android:usesCleartextTraffic="true">
+
+        <activity android:name="com.jjmr.econifypro.ui.MainActivity" />
+        <activity android:name="com.jjmr.econifypro.ui.RegisterActivity" />
+        <activity android:name="com.jjmr.econifypro.ui.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
