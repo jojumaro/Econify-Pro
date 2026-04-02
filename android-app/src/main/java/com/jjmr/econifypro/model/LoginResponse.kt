@@ -1,6 +1,13 @@
 package com.jjmr.econifypro.model
+import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(
-    val access: String,  // Este es el token que usaremos para las transacciones
-    val refresh: String  // Este sirve para renovar la sesión sin pedir password
+    val access: String,
+    val refresh: String,
+
+    @SerializedName("firstname")
+    val firstname: String?,
+
+    @SerializedName("lastname")
+    val lastname: String?
 )

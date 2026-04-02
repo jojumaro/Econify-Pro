@@ -13,7 +13,7 @@ object NetworkConfig {
 
         // 1. Creamos el cliente de red con nuestro "guardaespaldas" (Interceptor)
         val client = OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor(context))
+            //.addInterceptor(AuthInterceptor(context))
             .build()
 
         // 2. Construimos Retrofit usando ese cliente

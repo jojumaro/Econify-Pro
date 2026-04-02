@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.widget.ProgressBar
+import com.jjmr.econifypro.model.LoginResponse
 
 class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,21 +48,22 @@ class LoginActivity : BaseActivity() {
             setLoading(true, loginButton, loginProgress)
             val request = LoginRequest(email, pass)
 
-            NetworkConfig.getApiService(this).login(request).enqueue(object : Callback<TokenResponse> {
+            NetworkConfig.getApiService(this).login(request).enqueue(object : Callback<LoginResponse> {
             //NetworkConfig.apiService.login(request).enqueue(object : Callback<TokenResponse> {
-                override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
-
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     setLoading(false, loginButton, loginProgress)
 
                     if (response.isSuccessful) {
                         val body = response.body()
                         val token = body?.access
-                        val name = body?.firstname // Recuperamos el nombre real
+                        val nameFromBackend = body?.firstname
+                        val lastNameFromBackend = body?.lastname
 
                         val sharedPref = getSharedPreferences("EconifyPrefs", MODE_PRIVATE)
                         with(sharedPref.edit()) {
                             putString("access_token", token)
-                            putString("user_firstname", name) // ¡Vital para el saludo!
+                            putString("user_firstname", body?.firstname ?: "ERROR_NULL")
+                            putString("user_lastname", body?.lastname ?: "ERROR_NULL")
                             apply()
                         }
 
@@ -75,7 +77,7 @@ class LoginActivity : BaseActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     setLoading(false, loginButton, loginProgress)
                     Toast.makeText(this@LoginActivity, "Error de conexión", Toast.LENGTH_SHORT).show()
                 }

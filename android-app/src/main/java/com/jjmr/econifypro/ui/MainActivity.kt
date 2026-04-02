@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jjmr.econifypro.R
-class MainActivity : BaseActivity() { // Heredamos de tu BaseActivity
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) // Usamos el nuevo layout
+        setContentView(R.layout.activity_main)
 
         val sharedPref = getSharedPreferences("EconifyPrefs", Context.MODE_PRIVATE)
         val token = sharedPref.getString("access_token", null)
@@ -34,6 +34,10 @@ class MainActivity : BaseActivity() { // Heredamos de tu BaseActivity
                 }
                 R.id.nav_goals -> {
                     cambiarFragmento(GoalsFragment())
+                    true
+                }
+                R.id.nav_categories -> {
+                    cambiarFragmento(CategoriesFragment())
                     true
                 }
                 else -> false
