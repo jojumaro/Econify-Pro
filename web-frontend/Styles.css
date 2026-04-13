@@ -1,0 +1,1899 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #4A90D9;
+    --primary-teal: #2E9D8F;
+    --bg-sidebar: #F8F9FA;
+    --bg-main: #F0F2F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #2C3E50;
+    --text-secondary: #7F8C8D;
+    --text-muted: #95A5A6;
+    --border-color: #E8E8E8;
+    --expenses-gradient-start: #4A90D9;
+    --expenses-gradient-end: #5BC0DE;
+    --savings-gradient-start: #2E9D8F;
+    --savings-gradient-end: #3CB5A5;
+    --orange: #E8A87C;
+    --green: #5CB85C;
+    --light-blue: #5BC0DE;
+    --red: #E74C3C;
+    --yellow: #F0AD4E;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+body.dark { --text-primary: #f3f4f6; /* blanco suave */ --text-secondary: #d1d5db; /* gris claro */ }
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 220px;
+    background-color: var(--bg-sidebar);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding-left: 8px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.logo-icon i {
+    width: 18px;
+    height: 18px;
+}
+
+.logo-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(74, 144, 217, 0.1);
+    color: var(--primary-blue);
+}
+
+.nav-item.active {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.nav-item i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding: 24px 32px;
+    overflow-y: auto;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.greeting {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+    background-color: var(--border-color);
+}
+
+.icon-btn i {
+    width: 20px;
+    height: 20px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Card Base Styles */
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Summary Cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.summary-card {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 120px;
+}
+
+.expenses-card {
+    background: linear-gradient(135deg, var(--expenses-gradient-start) 0%, var(--expenses-gradient-end) 100%);
+    color: white;
+}
+
+.savings-card {
+    background: linear-gradient(135deg, var(--savings-gradient-start) 0%, var(--savings-gradient-end) 100%);
+    color: white;
+}
+
+.summary-card .amount {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.summary-card .label {
+    font-size: 13px;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.info-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+}
+
+.progress-bar {
+    width: 100px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+}
+
+.progress-text {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-top: 4px;
+    display: block;
+}
+
+.savings-progress {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.progress-percent {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card-content {
+    flex: 1;
+    position: relative;
+}
+
+.card-arrow {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.card-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-arrow i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Charts Row */
+.charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chart-card {
+    padding: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.menu-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.menu-btn:hover {
+    background-color: var(--bg-main);
+}
+
+.menu-btn i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Donut Chart */
+.chart-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.donut-chart {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+}
+
+.donut {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.donut-amount {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Line Chart */
+.line-chart-container {
+    padding: 10px 0;
+}
+
+.line-chart {
+    width: 100%;
+    height: 100px;
+}
+
+.chart-tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.tab {
+    padding: 8px 16px;
+    border: none;
+    background-color: var(--bg-main);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    background-color: var(--border-color);
+}
+
+.tab.active {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+/* Bottom Row */
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 20px;
+}
+
+.transactions-card,
+.goals-card {
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+/* Transactions */
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.transaction-icon.green {
+    background-color: rgba(46, 157, 143, 0.15);
+    color: var(--primary-teal);
+}
+
+.transaction-icon.orange {
+    background-color: rgba(232, 168, 124, 0.15);
+    color: var(--orange);
+}
+
+.transaction-icon.blue {
+    background-color: rgba(74, 144, 217, 0.15);
+    color: var(--primary-blue);
+}
+
+.transaction-icon i {
+    width: 18px;
+    height: 18px;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.transaction-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.transaction-amount {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.transaction-amount.negative {
+    color: var(--text-primary);
+}
+
+/* Goals */
+.goal-item {
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.goal-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.goal-percent {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-teal);
+}
+
+.goal-amount {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-teal);
+    margin-bottom: 10px;
+}
+
+.goal-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.goal-progress-bar {
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 40% !important;
+    flex: 0 0 auto !important;
+}
+
+.goal-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-teal) 0%, var(--primary-teal) 100%);
+    border-radius: 4px;
+}
+
+.goal-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    background-color: rgba(46, 157, 143, 0.15);
+    color: var(--primary-teal);
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.goal-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.new-goal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.new-goal-btn:hover {
+    background-color: rgba(74, 144, 217, 0.1);
+}
+
+.new-goal-btn i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .summary-cards,
+    .charts-row,
+    .bottom-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .nav-menu {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+}
+
+/* Login Page */
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: var(--bg-card);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-blue);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #3a7ac0;
+}
+
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.login-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* User profile page */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.profile-section {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.preferences-section {
+    grid-column: span 2;
+    padding: 24px;
+}
+
+.preferences-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.profile-buttons {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.save-btn {
+    padding: 12px 20px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background-color: #3a7ac0;
+}
+
+.logout-btn {
+    padding: 12px 20px;
+    background-color: transparent;
+    color: var(--primary-teal);
+    border: 1px solid var(--primary-teal);
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    padding: 12px 20px;
+    background-color: transparent;
+    color: var(--red);
+    border: 1px solid var(--red);
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Switch  */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-color);
+    transition: .3s;
+    border-radius: 22px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--primary-blue);
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Preferencias más compactas */
+.preferences-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 32px;
+    align-items: center;
+}
+
+.toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    align-items: center;
+}
+
+/* Lista de transacciones */
+.transactions-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-transaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.new-transaction-btn:hover {
+    background-color: #3a7ac0;
+}
+
+/* Filtros / búsqueda */
+.transactions-filters {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+}
+
+.search-box i {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.filter-box select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    font-size: 14px;
+}
+
+/* Lista */
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-amount {
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.transaction-amount.positive {
+    color: var(--green);
+}
+
+.transaction-amount.negative {
+    color: var(--red);
+}
+
+/* Paginación */
+.transactions-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.page-btn.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.page-number {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.page-number.active {
+    background-color: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.page-ellipsis {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Agregar transaction */
+.create-transaction-card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Filas del formulario */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-blue);
+}
+
+/* Toggle tipo ingreso/gasto */
+.type-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.type-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.type-btn.active {
+    background-color: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.type-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* Botones */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    padding: 10px 18px;
+    background-color: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: var(--border-color);
+}
+
+.save-btn {
+    padding: 10px 18px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background-color: #3a7ac0;
+}
+
+/* Lista de metas */
+/* Contenedor general */
+.goals-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header con botón a la derecha */
+.goals-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Botón Crear meta */
+.new-goal-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    width: auto;
+}
+
+.new-goal-btn:hover {
+    background-color: #3a7ac0;
+}
+
+/* 3 columnas por defecto */
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    justify-content: center;
+}
+
+/* 2 columnas en pantallas medianas */
+@media (max-width: 1100px) {
+    .goals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 1 columna en móvil */
+@media (max-width: 700px) {
+    .goals-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card más cuadrada y separada visualmente */
+.goal-item {
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+/* Icono */
+.goal-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.goal-icon i {
+    width: 22px;
+    height: 22px;
+}
+
+/* Colores */
+.goal-icon.blue { background-color: var(--primary-blue); }
+.goal-icon.green { background-color: var(--green); }
+.goal-icon.orange { background-color: var(--orange); }
+.goal-icon.purple { background-color: var(--purple, #7a4bd9); }
+
+/* Info interna */
+.goal-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.goal-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.goal-amount {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* FILA: fecha + barra + porcentaje */
+.goal-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+/* Fecha */
+.goal-date {
+    font-size: 13px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* Barra de progreso MÁS CORTA */
+.goal-progress-bar {
+    width: 28%; /* AJUSTE CLAVE */
+    height: 6px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Relleno */
+.goal-progress {
+    height: 100%;
+    background-color: var(--primary-blue);
+}
+
+/* Porcentaje pegado */
+.goal-percent {
+    font-size: 13px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* Botón detalles */
+.goal-details-btn {
+    margin-top: 6px;
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    width: auto !important;
+    align-self: flex-end !important;
+}
+
+.goal-details-btn:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+/* Crear Meta */
+.create-goal-card {
+    max-width: 600px;
+    margin: 0 auto;        /* centra la card */
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* Selector de iconos */
+.goal-icon-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.icon-option {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--border-color);
+    transition: 0.2s;
+}
+
+.icon-option.selected {
+    border-color: var(--primary-blue);
+    background: white;
+}
+
+.icon-option i {
+    width: 22px;
+    height: 22px;
+}
+
+/* Detalles de la meta */
+.goal-detail-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Cabecera */
+.goal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.goal-icon-large {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.goal-icon-large i {
+    width: 32px;
+    height: 32px;
+}
+
+.goal-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.goal-title-large {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.goal-date-large {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.goal-percent-large {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+/* Barra de progreso grande */
+.goal-progress-big {
+    width: 100%;
+    height: 12px;
+    background: var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.goal-progress-fill {
+    height: 100%;
+    background: var(--primary-blue);
+}
+
+/* Stats */
+.goal-stats {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Historial */
+.section-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.contributions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contribution-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: var(--border-color);
+    border-radius: 6px;
+}
+
+.contribution-date {
+    color: var(--text-secondary);
+}
+
+/* Botones */
+.goal-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-btn {
+    padding: 10px 16px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    padding: 10px 16px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Registro de usuario */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.auth-card {
+    max-width: 420px;
+    width: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.auth-switch {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.auth-switch a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+/* Categorías */
+.categories-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-category-btn {
+    padding: 10px 16px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.category-card {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.category-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.category-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.category-type {
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.category-type.gasto {
+    color: #e74c3c;
+}
+
+.category-type.ingreso {
+    color: #27ae60;
+}
+
+.category-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn-small {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--border-color);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon-btn-small.delete {
+    background: #ffe6e6;
+    color: #e74c3c;
+}
+
+/* Resumen mensual */
+/* Contenedor centrado */
+.monthly-summary-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.monthly-summary-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Header */
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.month-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.month-btn {
+    background: var(--border-color);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.current-month {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Bloque superior */
+.summary-top-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+}
+
+/* KPIs */
+.summary-kpis {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.kpi-item {
+    text-align: center;
+}
+
+.kpi-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.kpi-value {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.kpi-value.balance {
+    color: var(--primary-blue);
+}
+
+.kpi-value.ingreso {
+    color: #22c55e;
+}
+
+.kpi-value.gasto {
+    color: #ef4444;
+}
+
+/* Gráfico */
+.summary-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.chart-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: conic-gradient(#ef4444 0% 73%, var(--border-color) 73% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-inner {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.chart-caption {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Bloque inferior: listas en línea */
+.summary-lists-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.summary-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: var(--border-color);
+    border-radius: 6px;
+}
+
+.summary-amount {
+    font-weight: 600;
+}
+
+.summary-amount.ingreso {
+    color: #22c55e;
+}
+
+.summary-amount.gasto {
+    color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .summary-lists-row {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-kpis {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+
+/* ============================
+   CARD: Metas activas
+   ============================ */
+
+.goals-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* Título */
+.goals-card .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Cada meta */
+.goal-item {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Header de la meta */
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.goal-percent {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+/* Cantidad objetivo */
+.goal-amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Barra de progreso */
+.goal-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.goal-progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.goal-progress-fill {
+    height: 100%;
+    background: var(--primary-blue);
+    border-radius: 6px;
+}
+
+/* Badge del total */
+.goal-badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    background: var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+}
+
+/* Footer */
+.goal-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Botón nueva meta */
+.new-goal-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.new-goal-btn i {
+    stroke: white;
+}
+

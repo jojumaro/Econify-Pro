@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Perfil</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layouts/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layouts/auth.css' %}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+
+        {% include "layout/_sidebar.html" with active_tab="profile" %}
+
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="user-greeting">
+                    <h1>Configuración de Cuenta</h1>
+                    <p style="color: var(--text-secondary);">Gestiona tus datos personales y seguridad.</p>
+                </div>
+                <div class="header-actions">
+                    <div id="user-avatar-circle" class="user-avatar" style="width: 40px; height: 40px; background: var(--primary-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;">
+                        </div>
+                </div>
+            </header>
+
+            <div style="max-width: 700px; margin-top: 24px;">
+                <div class="card">
+                    <form class="profile-form" style="display: flex; flex-direction: column; gap: 20px;">
+                        <h3 style="margin-bottom: 5px; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); width: fit-content; padding-bottom: 5px;">Datos Personales</h3>
+
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="input-group">
+                                <label for="first_name">Nombre</label>
+                                <input type="text" id="first_name" required placeholder="Tu nombre">
+                            </div>
+                            <div class="input-group">
+                                <label for="last_name">Apellidos</label>
+                                <input type="text" id="last_name" required placeholder="Tus apellidos">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" disabled style="background: var(--bg-body); cursor: not-allowed; opacity: 0.7;">
+                            <small style="color: var(--text-secondary); font-size: 11px; margin-top: 5px;">El email no se puede modificar por seguridad.</small>
+                        </div>
+
+                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
+
+                        <h3 style="margin-bottom: 5px; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); width: fit-content; padding-bottom: 5px;">Cambiar Contraseña</h3>
+
+                        {% include "auth/components/_password_section.html" with show_btn=True %}
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Recuperamos de localStorage
+    const firstName = localStorage.getItem('user_firstname');
+    const lastName = localStorage.getItem('user_lastname');
+    const userEmail = localStorage.getItem('user_email');
+
+    // 2. Rellenamos los inputs
+    if (firstName) document.getElementById('first_name').value = firstName;
+    if (lastName) document.getElementById('last_name').value = lastName;
+    if (userEmail) document.getElementById('email').value = userEmail;
+
+    // 3. Actualizamos el avatar con la inicial del nombre
+    const avatar = document.getElementById('user-avatar-circle');
+    if (avatar && firstName) {
+        avatar.textContent = firstName.charAt(0).toUpperCase();
+    }
+
+    // 4. Lógica de Cerrar Sesión para el nuevo componente
+    const logoutLink = document.getElementById('logout-link');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = '/';
+        });
+    }
+
+    if (window.lucide) lucide.createIcons();
+});
+    </script>
+
+    <script type="module" src="{% static 'src/api/profile.service.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+/* css/main.css */
+
+/* 1. Capa de Base: Variables, Resets y Tipografías */
+@import "base.css";
+
+/* 2. Capa de Componentes: Elementos reutilizables (Botones, Cards, Inputs) */
+@import "components.css";
+
+.hidden {
+    display: none !important;
+}

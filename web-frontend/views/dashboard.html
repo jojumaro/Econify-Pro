@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layouts/dashboard.css' %}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        {% include "layout/_sidebar.html" with active_tab="dashboard" %}
+
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="user-greeting">
+                    <h1 id="user-name">Hola, Usuario</h1>
+                    <p style="color: var(--text-secondary);">Bienvenido de nuevo a tu panel financiero.</p>
+                </div>
+                <div class="header-actions" style="display: flex; align-items: center; gap: 20px;">
+                    <button class="btn" style="padding: 8px;"><i data-lucide="bell"></i></button>
+                    <div id="user-avatar-circle" class="user-avatar" style="width: 40px; height: 40px; background: var(--primary-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;">J</div>
+                </div>
+            </header>
+
+            <div class="summary-grid">
+<div class="card summary-card expenses">
+    <h3 style="font-size: 14px; color: var(--text-secondary);">Gastos del mes</h3>
+    <div id="month-expenses" class="amount" style="font-size: 24px; font-weight: 700; margin: 10px 0;">€0,00</div>
+    <div class="progress-container">
+        <div id="expenses-progress" class="progress-fill" style="width: 0%; background-color: var(--red);"></div>
+    </div>
+</div>
+
+<div class="card summary-card income">
+    <h3 style="font-size: 14px; color: var(--text-secondary);">Balance del mes</h3>
+    <div id="month-balance" class="amount" style="font-size: 24px; font-weight: 700; margin: 10px 0;">€0,00</div>
+    <div class="progress-container">
+        <div id="balance-progress" class="progress-fill" style="width: 0%; background-color: var(--primary-teal);"></div>
+    </div>
+</div>
+            </div>
+
+            <div class="dashboard-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                <div class="card">
+                    <h3 class="section-title">Transacciones recientes</h3>
+                    <div id="transactions-container" class="transactions-list">
+                        <p style="color: var(--text-muted);">Cargando transacciones...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="section-title">Metas activas</h3>
+                    <div id="goals-container" class="goals-list"></div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                        <i data-lucide="plus"></i> Nueva Meta
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="{% static 'src/api/dashboard.service.js' %}"></script>
+
+    <script>
+        lucide.createIcons();
+
+        const firstName = localStorage.getItem('user_firstname');
+        if (firstName) {
+            document.getElementById('user-name').textContent = `Hola, ${firstName}`;
+            const avatarCircle = document.getElementById('user-avatar-circle');
+            if (avatarCircle) {
+                avatarCircle.textContent = firstName.charAt(0).toUpperCase();
+            }
+        }
+
+        document.getElementById('user-avatar-circle').addEventListener('click', () => {
+            window.location.href = '/profile/';
+        });
+
+        // Lógica de Cerrar Sesión
+        document.getElementById('logout-link')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+/* css/base.css */
+
+/* 1. Reset de estilos para consistencia entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Definición de Variables Globales (Design Tokens) */
+:root {
+    --primary-blue: #4A90D9;
+    --primary-teal: #2E9D8F;
+    --bg-sidebar: #F8F9FA;
+    --bg-main: #F0F2F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #2C3E50;
+    --text-secondary: #7F8C8D;
+    --text-muted: #95A5A6;
+    --border-color: #E8E8E8;
+    --expenses-gradient-start: #4A90D9;
+    --expenses-gradient-end: #5BC0DE;
+    --savings-gradient-start: #2E9D8F;
+    --savings-gradient-end: #3CB5A5;
+    --orange: #E8A87C;
+    --green: #5CB85C;
+    --light-blue: #5BC0DE;
+    --red: #E74C3C;
+    --yellow: #F0AD4E;
+
+    /* Variables de espaciado y bordes para mantener el KISS */
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+}
+
+/* 3. Estilos Base del Elemento Body */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Utilitarios de texto rápidos */
+.text-center { text-align: center; }
+.mt-20 { margin-top: 20px; }

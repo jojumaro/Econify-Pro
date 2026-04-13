@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models import Sum
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -36,6 +38,10 @@ class User(AbstractUser):
     firstname = models.CharField(max_length=45, null=True, blank=True)
     lastname = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
+    security_question_1 = models.CharField(max_length=255, null=True, blank=True)
+    security_answer_1 = models.CharField(max_length=255, null=True, blank=True)
+    security_question_2 = models.CharField(max_length=255, null=True, blank=True)
+    security_answer_2 = models.CharField(max_length=255, null=True, blank=True)
 
     objects = CustomUserManager()
 
@@ -63,23 +69,28 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
-class Transactions(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, db_column='category_id')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.CharField(max_length=255)
-    date = models.DateField(auto_now_add=True)
-    is_expense = models.BooleanField(default=True)
-
-    class Meta:
-        db_table = 'transactions'
 
 class Goals(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id')
+    # Tipos de meta
+    GOAL_TYPES = [
+        ('SAVING', 'Ahorro Acumulado'),
+        ('MONTHLY_SAVING', 'Ahorro Mensual Recurrente'),
+        ('EXPENSE_LIMIT', 'Límite de Gasto / Pago Fijo'),
+    ]
+
+    user = models.ForeignKey('User', on_delete=models.CASCADE, db_column='user_id')
     name = models.CharField(max_length=100, null=True)
     target_amount = models.DecimalField(max_digits=10, decimal_places=2)
     current_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     deadline = models.DateField(null=True, blank=True)
+    start_date = models.DateField(auto_now_add=True)
+    status = models.CharField(
+        max_length=20,
+        choices=[('active', 'Activa'), ('completed', 'Completada'), ('expired', 'Expirada')],
+        default='active'
+    )
+    goal_type = models.CharField(max_length=20, choices=GOAL_TYPES, default='SAVING')
+    is_active = models.BooleanField(default=True)  # Para desactivar metas viejas
 
     class Meta:
         db_table = 'goals'
@@ -87,5 +98,32 @@ class Goals(models.Model):
     @property
     def progress_percentage(self):
         if self.target_amount > 0:
-            return (self.current_amount / self.target_amount) * 100
+            # Convertimos a float para evitar errores de tipo con Decimal
+            return min(float(self.current_amount / self.target_amount) * 100, 100.0)
         return 0
+
+    def save(self, *args, **kwargs):
+        # Lógica de auto-completado basada en el monto actual
+        if float(self.current_amount) >= float(self.target_amount):
+            self.status = 'completed'
+        else:
+            self.status = 'active'
+        super().save(*args, **kwargs)
+
+class Transaction(models.Model):
+    TRANSACTION_TYPES = [
+        ('GASTO', 'Gasto'),
+        ('INGRESO', 'Ingreso'),
+    ]
+
+    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='transactions')
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, related_name='transactions')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.CharField(max_length=255, blank=True)
+    date = models.DateField(default=timezone.now)
+    type = models.CharField(max_length=7, choices=TRANSACTION_TYPES)
+    goal = models.ForeignKey(Goals, on_delete=models.SET_NULL, null=True, blank=True, related_name='contributions')
+
+    class Meta:
+        db_table = 'transactions'
+

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Registro</title>
+    
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layouts/auth.css' %}">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="login-body">
+
+<div class="login-container">
+    <div class="login-card card" style="max-width: 750px; padding: 25px;">
+        <div class="login-logo">
+            <div class="logo-icon"><i data-lucide="zap"></i></div>
+            <span class="logo-text">Econify Pro</span>
+        </div>
+
+        <h2 class="login-title">Crea tu cuenta</h2>
+
+       <form class="register-form">
+    <div class="input-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
+    </div>
+
+    <div class="input-group">
+        <label for="first_name">Nombre</label>
+        <input type="text" id="first_name" placeholder="Tu nombre" required>
+    </div>
+
+    <div class="input-group">
+        <label for="last_name">Apellidos</label>
+        <input type="text" id="last_name" placeholder="Tus apellidos" required>
+    </div>
+
+    {% include "auth/components/_password_section.html" %}
+
+    <p style="font-size: 11px; font-weight: 800; color: var(--text-secondary); margin: 20px 0 10px; text-align: center; text-transform: uppercase; letter-spacing: 1px;">Seguridad de la cuenta</p>
+
+    <div class="form-row">
+        <div class="security-box compact">
+            <label>Pregunta 1</label>
+            <select id="q1" class="question-select" required>
+                <option value="" disabled selected>Selecciona...</option>
+            </select>
+            <input type="text" id="a1" placeholder="Respuesta" required>
+        </div>
+
+        <div class="security-box compact">
+            <label>Pregunta 2</label>
+            <select id="q2" class="question-select" required>
+                <option value="" disabled selected>Selecciona...</option>
+            </select>
+            <input type="text" id="a2" placeholder="Respuesta" required>
+        </div>
+    </div>
+
+    <button type="submit" class="login-btn btn btn-primary">Crear mi cuenta</button>
+</form>
+    </div>
+</div>
+
+    <div id="auth-alert" class="custom-alert hidden">
+        <div class="alert-content">
+
+            <span id="alert-message"></span>
+        </div>
+    </div>
+
+    <script>lucide.createIcons();</script>
+    <script type="module" src="{% static 'src/api/register.service.js' %}"></script>
+</body>
+</html>

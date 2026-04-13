@@ -1,0 +1,143 @@
+/* css/layouts/auth.css */
+
+.login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    background-color: var(--primary-blue);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.login-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+/* Ajuste específico para el botón de login para que ocupe todo el ancho */
+.login-btn {
+    width: 100%;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: var(--transition);
+}
+
+.login-btn:hover {
+    background-color: #357abd;
+}
+
+.login-links {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor del Label + Icono */
+.password-label-wrapper {
+    display: flex;
+    align-items: center; /* Alineación vertical */
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+    height: 20px; /* Forzamos altura para que sea igual al label de 'Repetir' */
+}
+
+.password-label-wrapper label {
+    margin: 0 !important; /* Quitamos márgenes que traiga por defecto */
+    padding: 0 !important;
+    display: inline-block;
+}
+
+/* Ajuste del icono para que no ocupe espacio extra */
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+}
+
+.info-icon i {
+    width: 16px !important;
+    height: 16px !important;
+    display: block;
+}
+
+/* Ocultar el botón de actualizar cuando estemos dentro del formulario de registro */
+.register-form #btn-password-submit,
+ #btn-password-submit.hidden {
+    display: none !important;
+}
+
+/* Si prefieres usar la clase .hidden que ya tienes en el HTML */
+.hidden {
+    display: none !important;
+}
+
+/* Estilo de respaldo para el Toast */
+#auth-alert {
+    visibility: visible !important;
+    display: flex !important;
+}
+
+#alert-message {
+    font-family: sans-serif;
+    font-size: 14px;
+}
