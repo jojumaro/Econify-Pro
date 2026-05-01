@@ -1,98 +1,82 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Econify Pro - Perfil</title>
 
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block title %}Econify Pro - Perfil{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/layouts/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'css/layouts/auth.css' %}">
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
-    <div class="dashboard-container">
+{% endblock %}
 
-        {% include "layout/_sidebar.html" with active_tab="profile" %}
+{% block content %}
+    {% include "layout/_sidebar.html" with active_tab="profile" %}
 
-        <main class="main-content">
-            <header class="dashboard-header">
+    <main class="main-content">
+        <div style="max-width: 700px; width: 100%; margin: 0 auto;">
+
+            <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <div class="user-greeting">
-                    <h1>Configuración de Cuenta</h1>
+                    <h1 style="font-size: 24px; font-weight: 700; color: var(--text-primary);">Configuración de Cuenta</h1>
                     <p style="color: var(--text-secondary);">Gestiona tus datos personales y seguridad.</p>
                 </div>
                 <div class="header-actions">
-                    <div id="user-avatar-circle" class="user-avatar" style="width: 40px; height: 40px; background: var(--primary-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;">
-                        </div>
+                    <div id="user-avatar-circle" class="user-avatar" style="width: 44px; height: 44px; background: var(--primary-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: var(--shadow);">
+                    </div>
                 </div>
             </header>
 
-            <div style="max-width: 700px; margin-top: 24px;">
-                <div class="card">
-                    <form class="profile-form" style="display: flex; flex-direction: column; gap: 20px;">
-                        <h3 style="margin-bottom: 5px; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); width: fit-content; padding-bottom: 5px;">Datos Personales</h3>
+            <div class="card" style="background: var(--bg-card); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow);">
+                <form class="profile-form" style="display: flex; flex-direction: column; gap: 24px;">
+                    <h3 style="margin-bottom: 5px; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); width: fit-content; padding-bottom: 5px; font-size: 18px;">Datos Personales</h3>
 
-                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="input-group">
-                                <label for="first_name">Nombre</label>
-                                <input type="text" id="first_name" required placeholder="Tu nombre">
-                            </div>
-                            <div class="input-group">
-                                <label for="last_name">Apellidos</label>
-                                <input type="text" id="last_name" required placeholder="Tus apellidos">
-                            </div>
+                    <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+                            <label for="first_name" style="font-weight: 600; font-size: 14px;">Nombre</label>
+                            <input type="text" id="first_name" required placeholder="Tu nombre" style="padding: 10px; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
                         </div>
-
-                        <div class="input-group">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" id="email" disabled style="background: var(--bg-body); cursor: not-allowed; opacity: 0.7;">
-                            <small style="color: var(--text-secondary); font-size: 11px; margin-top: 5px;">El email no se puede modificar por seguridad.</small>
+                        <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+                            <label for="last_name" style="font-weight: 600; font-size: 14px;">Apellidos</label>
+                            <input type="text" id="last_name" required placeholder="Tus apellidos" style="padding: 10px; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
                         </div>
+                    </div>
 
-                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
+                    <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="email" style="font-weight: 600; font-size: 14px;">Correo electrónico</label>
+                        <input type="email" id="email" disabled style="padding: 10px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: #f1f3f5; cursor: not-allowed; opacity: 0.8;">
+                        <small style="color: var(--text-secondary); font-size: 11px;">El email no se puede modificar por seguridad.</small>
+                    </div>
 
-                        <h3 style="margin-bottom: 5px; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); width: fit-content; padding-bottom: 5px;">Cambiar Contraseña</h3>
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
 
-                        {% include "auth/components/_password_section.html" with show_btn=True %}
-                    </form>
-                </div>
+                    <h3 style="margin-bottom: 5px; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); width: fit-content; padding-bottom: 5px; font-size: 18px;">Seguridad</h3>
+
+                    {% include "auth/components/_password_section.html" with show_btn=True %}
+                </form>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+{% endblock %}
 
+{% block extra_js %}
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Recuperamos de localStorage
-    const firstName = localStorage.getItem('user_firstname');
-    const lastName = localStorage.getItem('user_lastname');
-    const userEmail = localStorage.getItem('user_email');
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstName = localStorage.getItem('user_firstname');
+            const lastName = localStorage.getItem('user_lastname');
+            const userEmail = localStorage.getItem('user_email');
 
-    // 2. Rellenamos los inputs
-    if (firstName) document.getElementById('first_name').value = firstName;
-    if (lastName) document.getElementById('last_name').value = lastName;
-    if (userEmail) document.getElementById('email').value = userEmail;
+            if (firstName) document.getElementById('first_name').value = firstName;
+            if (lastName) document.getElementById('last_name').value = lastName;
+            if (userEmail) document.getElementById('email').value = userEmail;
 
-    // 3. Actualizamos el avatar con la inicial del nombre
-    const avatar = document.getElementById('user-avatar-circle');
-    if (avatar && firstName) {
-        avatar.textContent = firstName.charAt(0).toUpperCase();
-    }
+            const avatar = document.getElementById('user-avatar-circle');
+            if (avatar && firstName) {
+                avatar.textContent = firstName.charAt(0).toUpperCase();
+            }
 
-    // 4. Lógica de Cerrar Sesión para el nuevo componente
-    const logoutLink = document.getElementById('logout-link');
-    if (logoutLink) {
-        logoutLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.clear();
-            window.location.href = '/';
+            if (window.lucide) {
+                lucide.createIcons();
+            }
         });
-    }
-
-    if (window.lucide) lucide.createIcons();
-});
     </script>
-
     <script type="module" src="{% static 'src/api/profile.service.js' %}"></script>
-</body>
-</html>
+    <script type="module" src="{% static 'src/api/auth.service.js' %}"></script>
+{% endblock %}

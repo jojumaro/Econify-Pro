@@ -9,5 +9,18 @@ data class LoginResponse(
     val firstname: String?,
 
     @SerializedName("lastname")
-    val lastname: String?
+    val lastname: String?,
+
+    // --- NUEVOS CAMPOS ---
+    @SerializedName("security_question_1")
+    val securityQuestion1: Int?,
+
+    @SerializedName("security_answer_1")
+    val securityAnswer1: String?,
+
+    @SerializedName("security_question_2")
+    val securityQuestion2: Int?,
+
+    @SerializedName("security_answer_2")
+    val securityAnswer2: String?
 )

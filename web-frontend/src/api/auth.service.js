@@ -1,18 +1,40 @@
-import { showToast } from '../utils/ui.utils.js';
+// IMPORTANTE: La ruta debe coincidir exactamente con tu estructura de carpetas
+import { showToast, logout } from '../utils/ui.utils.js';
 
+/**
+ * LÓGICA DE LOGOUT
+ * Usamos delegación de eventos para que funcione aunque el DOM no haya terminado de cargar.
+ */
+document.addEventListener('click', (e) => {
+    // Buscamos si el clic fue en el enlace de cerrar sesión
+    const logoutTarget = e.target.closest('#logout-link');
+
+    if (logoutTarget) {
+        e.preventDefault();
+        console.log("Iniciando proceso de logout...");
+
+        if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+            // Usamos la función logout que ya tienes en ui.utils.js
+            logout();
+        }
+    }
+});
+
+/**
+ * LÓGICA DE LOGIN
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('.login-form');
 
-    // IMPORTANTE: Solo ejecutamos la lógica si el formulario existe en esta página
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            const btn = document.querySelector('.login-btn');
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const btn = document.querySelector('.login-btn');
 
-            btn.textContent = "Cargando...";
+            btn.textContent = "Entrando...";
             btn.disabled = true;
 
             try {
@@ -28,18 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('access_token', data.access);
                     localStorage.setItem('refresh_token', data.refresh);
                     localStorage.setItem('user_firstname', data.firstname);
-                    localStorage.setItem('user_lastname', data.lastname || data.last_name || "");
                     localStorage.setItem('user_email', data.email);
 
                     showToast("¡Bienvenido!", "success");
-
                     window.location.href = '/dashboard/';
                 } else {
-                    showToast(data.error || "Credenciales incorrectas", 'error');
+                    showToast(data.error || "Error al entrar", 'error');
                 }
             } catch (error) {
-                console.error("Error de red:", error);
-                showToast("No se pudo conectar con el servidor", 'error');
+                showToast("Error de conexión", 'error');
             } finally {
                 btn.textContent = "Entrar";
                 btn.disabled = false;

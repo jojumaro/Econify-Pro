@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <!-- Cabecera de Perfil -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
                 android:layout_marginTop="12dp"/>
         </LinearLayout>
 
+        <!-- CARD 1: DATOS PERSONALES -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,12 +92,13 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- CARD 2: SEGURIDAD (CONTRASEÑA) -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -139,6 +142,83 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <!-- CARD 3: RECUPERACIÓN (PREGUNTAS) -->
+<!--        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preguntas de Recuperación"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_blue"
+                    android:layout_marginBottom="16dp"/>
+
+                &lt;!&ndash; Pregunta 1 &ndash;&gt;
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pregunta 1"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/spProfileQuestion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_rounded"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Respuesta 1"
+                    android:layout_marginBottom="16dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etProfileAnswer1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                &lt;!&ndash; Pregunta 2 &ndash;&gt;
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pregunta 2"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/spProfileQuestion2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_rounded"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Respuesta 2">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etProfileAnswer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>-->
 
         <Button
             android:id="@+id/btnUpdateProfile"

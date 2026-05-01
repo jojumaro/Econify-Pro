@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Econify Pro - Categorías</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/layouts/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layouts/categories.css' %}">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -59,7 +59,10 @@
         </div>
     </div>
 
+    {% include "layout/_footer.html" %}
+
     <script>lucide.createIcons();</script>
     <script type="module" src="{% static 'src/api/categories.service.js' %}"></script>
+    <script type="module" src="{% static 'src/api/auth.service.js' %}"></script>
 </body>
 </html>

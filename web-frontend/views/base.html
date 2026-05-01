@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Econify Pro{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'logo_econify_pro.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="{% if not user.is_authenticated %}auth-page{% endif %}">
+    <div class="dashboard-container">
+        {% if user.is_authenticated %}
+            {% include "layout/_sidebar.html" %}
+        {% endif %}
+
+        <div class="main-wrapper" style="flex: 1; display: flex; flex-direction: column;">
+            {% block content %}{% endblock %}
+
+            {% if user.is_authenticated %}
+            <footer class="app-footer">
+                <p>&copy; 2026 Econify Pro. Todos los derechos reservados.</p>
+            </footer>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) { lucide.createIcons(); }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

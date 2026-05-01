@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_dashboard"
-        android:icon="@android:drawable/ic_menu_today"
+        android:icon="@drawable/ic_menu_dashboard"
         android:title="Dashboard" />
     <item
         android:id="@+id/nav_transactions"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@drawable/ic_menu_transactions"
         android:title="Transacciones" />
     <item
         android:id="@+id/nav_goals"
@@ -14,6 +14,6 @@
         android:title="Metas" />
     <item
         android:id="@+id/nav_categories"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/ic_menu_catgories"
         android:title="Categorías" />
 </menu>

@@ -104,3 +104,13 @@ export const updateStrengthUI = (password, barElem, textElem) => {
     textElem.style.color = status.color;
     return status.level;
 };
+
+export function logout() {
+    // Limpiamos los tokens y datos de sesión
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user_firstname');
+
+    // Redirigimos al inicio (landing page o login)
+    window.location.href = '/';
+}

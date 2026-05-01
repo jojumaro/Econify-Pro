@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import com.jjmr.econifypro.R
 
 // "open" permite que otras clases hereden de esta
 open class BaseActivity : AppCompatActivity() {

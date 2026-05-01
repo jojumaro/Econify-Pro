@@ -1,61 +1,63 @@
+from django.db.models import Sum, Q, F
+from django.db import transaction
+from .models import Transaction, Goals
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from django.db.models import Sum
-from .models import Transaction, Goals
-from datetime import date, datetime
+from django.utils import timezone
+
+
+def update_all_user_goals(user):
+    user_id = user.id
+    # Quitamos el atomic de aquí para que cada update sea instantáneo
+    metas = Goals.objects.filter(user=user, is_active=True)
+
+    for g in metas:
+        if g.goal_type in ['MONTHLY_SAVING', 'ANNUAL_SAVING']:
+            qs = Transaction.objects.filter(user=user)
+            if g.goal_type == 'MONTHLY_SAVING' and g.month and g.year:
+                qs = qs.filter(date__month=g.month, date__year=g.year)
+
+            res = qs.aggregate(
+                i=Sum('amount', filter=Q(type='INGRESO')),
+                e=Sum('amount', filter=Q(type='GASTO'))
+            )
+            nuevo_monto = float(res['i'] or 0) - float(res['e'] or 0)
+        else:
+            # Caso DEBT_REDUCTION
+            # Filtramos estrictamente por el ID de la meta
+            suma_vinculada = Transaction.objects.filter(goal_id=g.id).aggregate(s=Sum('amount'))['s'] or 0
+            nuevo_monto = abs(float(suma_vinculada))
+
+        nuevo_status = 'completed' if nuevo_monto >= float(g.target_amount) else 'active'
+
+        # USAMOS SAVE DIRECTO PERO SIN SEÑALES RECURSIVAS
+        Goals.objects.filter(id=g.id).update(current_amount=nuevo_monto, status=nuevo_status)
+
+        # LOG DE VERIFICACIÓN
+        if g.id == 11:
+            # ESTO COMPRUEBA SI EN LA DB HA ENTRADO EL DATO
+            check = Goals.objects.get(id=11)
+            print(f"!!! META 11 COMPROBACIÓN POST-UPDATE: {check.current_amount} !!!")
 
 
 @receiver(post_save, sender=Transaction)
 @receiver(post_delete, sender=Transaction)
-def refresh_all_user_goals(sender, instance, **kwargs):
-    user = instance.user
-    print(f"--- Ejecutando Signal para usuario: {user.email} ---")
+def update_goals_on_transaction_change(sender, instance, **kwargs):
+    # LLAMADA DIRECTA, SIN ESPERAR AL COMMIT
+    update_all_user_goals(instance.user)
 
-    # 1. ACTUALIZACIÓN MANUAL (Huchas)
-    if instance.goal:
-        goal = instance.goal
-        total_hucha = Transaction.objects.filter(goal=goal).aggregate(Sum('amount'))['amount__sum'] or 0
-        goal.current_amount = float(total_hucha)
-        goal.save()
-        print(f"Meta Manual '{goal.name}' actualizada a {goal.current_amount}")
 
-    # 2. ACTUALIZACIÓN AUTOMÁTICA (Balance Mensual)
-    metas_auto = Goals.objects.filter(user=user, goal_type='AUTO')
-    print(f"Metas AUTO encontradas: {metas_auto.count()}")
+@receiver(post_save, sender=Goals)
+def gestionar_monto_inicial_deuda(sender, instance, created, **kwargs):
+    """Crea la transacción inicial al crear la meta."""
+    if created and float(instance.current_amount) > 0:
+        tipo = 'GASTO'
 
-    for meta in metas_auto:
-        # Aseguramos que las fechas sean objetos 'date' puros
-        if isinstance(meta.deadline, datetime):
-            f_fin = meta.deadline.date()
-        else:
-            f_fin = meta.deadline
-
-        # Para el cálculo de abril, forzamos inicio el día 1 de ese mes
-        if f_fin:
-            f_inicio = f_fin.replace(day=1)
-        else:
-            f_inicio = date(2020, 1, 1)  # Fecha muy antigua si no hay límite
-
-        print(f"Calculando meta '{meta.name}' entre {f_inicio} y {f_fin}")
-
-        # Filtros de transacciones
-        ingresos = Transaction.objects.filter(
-            user=user,
-            type='INCOME',
-            date__gte=f_inicio,
-            date__lte=f_fin if f_fin else date(2099, 12, 31)
-        ).aggregate(Sum('amount'))['amount__sum'] or 0
-
-        gastos = Transaction.objects.filter(
-            user=user,
-            type='EXPENSE',
-            date__gte=f_inicio,
-            date__lte=f_fin if f_fin else date(2099, 12, 31)
-        ).aggregate(Sum('amount'))['amount__sum'] or 0
-
-        # El balance neto
-        meta.current_amount = float(ingresos) - float(gastos)
-
-        # Forzamos el guardado
-        meta.save()
-        print(f"Resultado Meta AUTO: Ingresos({ingresos}) - Gastos({gastos}) = {meta.current_amount}")
+        Transaction.objects.create(
+            goal=instance,
+            user=instance.user,
+            amount=instance.current_amount,
+            type=tipo,
+            description=f"Aporte inicial: {instance.name}",
+            date=timezone.now().date()
+        )

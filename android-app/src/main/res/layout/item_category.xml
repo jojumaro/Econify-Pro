@@ -35,12 +35,5 @@
                 android:textColor="#666666" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnDeleteCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_delete"
-            app:tint="@android:color/holo_red_dark" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

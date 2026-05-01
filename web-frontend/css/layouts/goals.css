@@ -1,0 +1,390 @@
+/* css/layouts/goals.css */
+
+.main-content {
+    margin-left: 260px !important;
+    width: calc(100% - 260px) !important;
+    padding: 40px !important;
+    display: block !important;
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.dashboard-header p { color: var(--text-secondary); margin-top: 5px; }
+
+.btn-add {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center; gap: 8px;
+    cursor: pointer;
+}
+
+.info-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin: 25px 0 30px 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    width: 100%;
+    overflow: visible;
+}
+
+/* Estilo de la Card de Meta */
+.goal-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s;
+}
+
+.goal-card:hover { transform: translateY(-4px); }
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.goal-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0; /* Evita que los botones se deformen */
+}
+
+.goal-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.goal-card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.goal-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.goal-amount span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Barra de progreso */
+.progress-container {
+    height: 10px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.goal-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Modal y Helpers */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.modal-actions { display: flex; gap: 15px; margin-top: 25px; }
+.btn-secondary { background: #f3f4f6; border: none; flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-primary { background: var(--primary-blue); color: white; border: none; flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+/* --- ESTADOS DE LAS METAS --- */
+
+/* 1. ESTADO: ACTIVA (Por defecto) */
+.goal-card.status-active {
+    border-top: 5px solid var(--primary-color);
+    background: white;
+}
+
+/* 2. ESTADO: COMPLETADA (Exactamente 100%) */
+.goal-card.status-completed {
+    opacity: 0.85;
+    border-top: 5px solid #64748b !important;
+    background-color: #f8fafc !important;
+}
+
+.goal-card.status-completed h3,
+.goal-card.status-completed .goal-amount {
+    color: #166534;
+}
+
+.goal-card.status-completed .progress-bar {
+    background: #10b981 !important;
+}
+
+.goal-card.status-completed .goal-badge {
+    color: #10b981 !important;
+}
+
+/* Si la meta se completó con éxito (100%) pero no ha expirado */
+.goal-card.status-completed:not(.expired) {
+    border-top: 5px solid #10b981 !important;
+    background-color: #f0fdf4 !important;
+}
+
+/* 3. ESTADO: SUPERADO (> 100%) - ¡El toque premium! */
+.goal-card.status-overachieved {
+    border-top: 5px solid #059669 !important;
+    background-color: #ecfdf5 !important;
+    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1);
+    transform: translateY(-4px); /* Sigue flotando porque es un logro extra */
+}
+
+.goal-card.status-overachieved h3,
+.goal-card.status-overachieved .goal-amount {
+    color: #064e3b;
+}
+
+.goal-card.status-overachieved .progress-bar {
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%) !important;
+}
+
+/* Animación para la estrella del sobrecumplimiento */
+.status-overachieved .goal-badge i {
+    animation: pulse-star 2s infinite ease-in-out;
+}
+
+@keyframes pulse-star {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* --- ELEMENTOS COMUNES --- */
+
+/* Botón de completar manual */
+.btn-complete {
+    color: #10b981;
+    background: #f0fdf4;
+    border-radius: 6px;
+}
+
+.btn-complete:hover {
+    background: #10b981;
+    color: white;
+}
+
+/* Ajuste de iconos de acción en cards con fondo de color */
+.status-completed .btn-icon,
+.status-overachieved .btn-icon {
+    color: rgba(6, 78, 59, 0.4);
+}
+
+.status-completed .btn-icon:hover,
+.status-overachieved .btn-icon:hover {
+    background: rgba(16, 185, 129, 0.1);
+    color: #064e3b;
+}
+
+/* --- ESTILO DEL MODAL (FIXED) --- */
+
+/* Contenedor que oscurece el fondo */
+.custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.7); /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(4px); /* Desenfoque elegante */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Por encima de todo */
+}
+
+/* La tarjeta dentro del modal */
+.custom-alert .card {
+    background: white;
+    width: 100%;
+    max-width: 550px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    border: none; /* Quitamos bordes si los tuviera */
+}
+
+/* Títulos del modal */
+#modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Inputs dentro del modal para que se vean limpios */
+#goal-form .input-group {
+    margin-bottom: 20px;
+}
+
+#goal-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+#goal-form input,
+#goal-form select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: #f8fafc;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+#goal-form input:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    background-color: white;
+}
+
+/* Clase para ocultar */
+.hidden {
+    display: none !important;
+}
+
+.goals-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Ajuste para que el texto no empuje los botones */
+.goal-info-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.goal-info-main h3 {
+    margin: 4px 0 0 0;
+    font-size: 1.1rem;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filter-group {
+    display: flex;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn.active {
+    background: white;
+    color: var(--primary-blue);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: white;
+    font-size: 13px;
+    color: var(--text-primary);
+    outline: none;
+}
+
+/* Estilo base del botón de acción (estilo transacciones) */
+.btn-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #f1f5f9; /* Gris muy claro de fondo */
+    color: #64748b;    /* Icono en gris pizarra */
+}
+
+.btn-action i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Efecto Hover para Editar */
+.btn-action.edit-btn:hover {
+    background-color: #e0e7ff; /* Azul muy suave */
+    color: #4f46e5;           /* Icono azul índigo */
+}
+
+/* Efecto Hover para Eliminar */
+.btn-action.delete-btn:hover {
+    background-color: #fee2e2; /* Rojo muy suave */
+    color: #ef4444;           /* Icono rojo */
+}

@@ -111,11 +111,50 @@
 .trans-amount.negative { color: var(--red); }
 .trans-amount.positive { color: var(--green); }
 
-/* 6. Responsividad (KISS) */
+.transactions-list,
+.goals-grid {
+    flex-grow: 1;      /* CLAVE: Empuja el contenido para llenar la tarjeta */
+    overflow-y: auto;  /* Si hay mucho contenido, crea scroll interno */
+    max-height: 450px; /* Opcional: Define un tope para que no sea infinito */
+    padding-right: 8px; /* Espacio para el scrollbar */
+}
+
+/* Estilo para el scrollbar (opcional, para que quede elegante) */
+.transactions-list::-webkit-scrollbar,
+.goals-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.transactions-list::-webkit-scrollbar-thumb,
+.goals-grid::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+/* 6. Responsive */
+@media (max-width: 1024px) {
+    .dashboard-grid-bottom {
+        grid-template-columns: 1fr; /* En tablets/móvil uno debajo de otro */
+    }
+
+    .transactions-list,
+    .goals-grid {
+        max-height: none; /* Quitamos el límite en móvil */
+    }
+}
+
 @media (max-width: 768px) {
     .sidebar { width: 70px; padding: 15px; }
     .sidebar .logo-text, .sidebar span { display: none; }
     .main-content { margin-left: 70px; padding: 20px; }
+}
+
+.dashboard-grid-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    gap: 25px; /* El mismo espacio que los de arriba */
+    margin-top: 25px;
+    align-items: stretch;
 }
 
 /* Ajuste del Grid para que las columnas ocupen el espacio real */
@@ -128,6 +167,20 @@
 }
 
 .card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
     margin: 0;
     width: 100%;
+    border: 1px solid var(--border-color);
+
+    /* Configuración para nivelar contenido interno */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ocupa el alto que le da el grid-bottom */
+}
+
+.card-header {
+    margin-bottom: 20px;
+    flex-shrink: 0; /* Que no se encoja */
 }

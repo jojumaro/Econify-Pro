@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_main"
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- HEADER -->
+        <!-- Cabecera: Saludo y Configuración -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,338 +21,195 @@
             android:gravity="center_vertical"
             android:padding="8dp">
 
-            <!-- Greeting -->
             <TextView
-                android:id="@+id/dashboardGreeting"
+                android:id="@+id/tvGreeting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hola, Jorge"
+                tools:text="Hola, Usuario"
                 android:textSize="22sp"
-                android:textStyle="bold"
+                android:fontFamily="sans-serif-black"
                 android:textColor="@color/text_primary" />
 
-            <!-- Icons -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/notificationIcon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    app:tint="@color/primary_blue"
-                    android:layout_marginEnd="12dp"/>
-
-                <ImageView
-                    android:id="@+id/btnSettings"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/circle_background_blue"
-                    android:backgroundTint="@color/primary_blue"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_settings"
-                    app:tint="@color/white" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/btnSettings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circle_background_blue"
+                android:padding="8dp"
+                android:src="@drawable/ic_settings"
+                app:tint="@color/white"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
 
-        <!-- SUMMARY CARDS -->
+        <!-- Card de Balance General -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gastos de este mes"
+                    android:textAllCaps="true"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvMonthlyExpenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="0.00€"
+                    android:textSize="32sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/text_primary" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/border_color"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balance General"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/tvTotalBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="0.00€"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card de Gráfico -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Distribución de Gastos"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="18sp"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/chartExpenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Sección de Metas (Scroll Horizontal) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <!-- Expenses Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                android:layout_weight="1"
+                android:text="Tus Metas"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/text_primary"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/expensesAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+€3,254.50"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/dash_red" />
-
-                    <TextView
-                        android:id="@+id/expensesLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gastos este mes"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="4dp"/>
-
-                    <ProgressBar
-                        android:id="@+id/expensesProgress"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:progress="13"
-                        android:max="100"
-                        android:progressTint="@color/dash_red"
-                        android:layout_marginTop="12dp"/>
-
-                    <TextView
-                        android:id="@+id/expensesPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="13%"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Savings Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/btnViewAllGoals"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/savingsAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+€3,500.00"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/dash_green" />
-
-                    <TextView
-                        android:id="@+id/savingsLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ahorro objetivo"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="4dp"/>
-
-                    <ProgressBar
-                        android:id="@+id/savingsProgress"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:progress="40"
-                        android:max="100"
-                        android:progressTint="@color/dash_green"
-                        android:layout_marginTop="12dp"/>
-
-                    <TextView
-                        android:id="@+id/savingsPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="40%"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:text="Ver todas"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"/>
         </LinearLayout>
 
-        <!-- DONUT CHART -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/containerGoals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp" />
+        </HorizontalScrollView>
+
+        <!-- Últimos Movimientos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Últimos Movimientos"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/text_primary"/>
+
+            <TextView
+                android:id="@+id/tvViewAllTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver todos"
+                android:textStyle="bold"
+                android:textColor="@color/primary_blue"
+                android:textSize="14sp" />
+        </LinearLayout>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            app:cardElevation="2dp">
 
             <LinearLayout
+                android:id="@+id/containerRecentTransactions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:text="Gastos por categoría"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <ImageView
-                    android:id="@+id/donutChartPlaceholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/chart_gray"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- LINE CHART -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:text="Gastos vs Ahorro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <ImageView
-                    android:id="@+id/lineChartPlaceholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/chart_gray"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- RECENT TRANSACTIONS -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:text="Transacciones recientes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_primary"/>
-
-                <!-- Transaction item -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingTop="12dp">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:background="@color/dash_green"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:text="Supermercado"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/text_primary"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:text="Alimento 2026"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/text_secondary"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:text="-€75.00"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/dash_red"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- GOALS -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:text="Metas activas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_primary"/>
-
-                <TextView
-                    android:text="Ahorrar para vacaciones"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
-                    android:layout_marginTop="12dp"/>
-
-                <ProgressBar
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:progress="40"
-                    android:max="100"
-                    android:progressTint="@color/dash_green"
-                    android:layout_marginTop="8dp"/>
-
-                <TextView
-                    android:text="40%"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    android:layout_marginTop="4dp"/>
-
-                <Button
-                    android:id="@+id/newGoalButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nueva Meta"
-                    android:textAllCaps="false"
-                    android:backgroundTint="@color/primary_blue"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="16dp"/>
+                android:padding="8dp">
+                <!-- Se infla dinámicamente -->
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

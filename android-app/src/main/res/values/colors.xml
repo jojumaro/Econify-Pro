@@ -4,6 +4,7 @@
     <!-- Colores principales (igual que la web) -->
     <color name="primary_blue">#3B82F6</color>        <!-- Azul principal -->
     <color name="primary_blue_dark">#1E40AF</color>   <!-- Azul más intenso -->
+    <color name="primary_teal">#2E9D8F</color>        <!-- Azul principal -->
     <color name="secondary_blue">#60A5FA</color>      <!-- Azul suave -->
 
     <!-- Fondos -->

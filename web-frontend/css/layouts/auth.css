@@ -1,33 +1,35 @@
 /* css/layouts/auth.css */
 
+/* Contenedor principal: Centrado absoluto en pantalla */
 .login-body {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     background-color: var(--bg-main);
+    padding: 20px; /* Margen de seguridad para móviles */
 }
 
 .login-container {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
+    max-width: 420px; /* Tamaño optimizado para lectura */
 }
 
 .login-card {
     background: var(--bg-card);
-    padding: 40px;
+    padding: 30px; /* Reducido para móvil por defecto */
     border-radius: var(--radius-lg);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
 
+/* Logo y Branding */
 .login-logo {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .logo-icon {
@@ -50,11 +52,25 @@
 .login-title {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: var(--text-primary);
 }
 
-/* Ajuste específico para el botón de login para que ocupe todo el ancho */
+/* Formulario e Inputs: Asegurar que nada se desborde */
+.login-form .input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-form input {
+    width: 100%;
+    box-sizing: border-box; /* Evita que el padding ensanche el input */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-top: 8px;
+}
+
 .login-btn {
     width: 100%;
     background-color: var(--primary-blue);
@@ -71,13 +87,18 @@
 
 .login-btn:hover {
     background-color: #357abd;
+    transform: translateY(-1px);
 }
 
+/* Navegación y enlaces inferiores */
 .login-links {
     margin-top: 25px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Apilados en móvil */
     gap: 12px;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
 }
 
 .login-links a {
@@ -91,53 +112,56 @@
     text-decoration: underline;
 }
 
-/* Contenedor del Label + Icono */
-.password-label-wrapper {
-    display: flex;
-    align-items: center; /* Alineación vertical */
-    justify-content: flex-start;
-    gap: 8px;
-    margin-bottom: 8px;
-    height: 20px; /* Forzamos altura para que sea igual al label de 'Repetir' */
-}
-
-.password-label-wrapper label {
-    margin: 0 !important; /* Quitamos márgenes que traiga por defecto */
-    padding: 0 !important;
-    display: inline-block;
-}
-
-/* Ajuste del icono para que no ocupe espacio extra */
-.info-icon {
-    display: inline-flex;
-    align-items: center;
-    line-height: 0;
-}
-
-.info-icon i {
-    width: 16px !important;
-    height: 16px !important;
-    display: block;
-}
-
-/* Ocultar el botón de actualizar cuando estemos dentro del formulario de registro */
-.register-form #btn-password-submit,
- #btn-password-submit.hidden {
-    display: none !important;
-}
-
-/* Si prefieres usar la clase .hidden que ya tienes en el HTML */
+/* Helpers de visibilidad */
 .hidden {
     display: none !important;
 }
 
-/* Estilo de respaldo para el Toast */
-#auth-alert {
-    visibility: visible !important;
-    display: flex !important;
+/* Media Queries para pantallas medianas/grandes */
+@media (min-width: 480px) {
+    .login-card {
+        padding: 40px; /* Más aire en tablets/PC */
+    }
+
+    .login-links {
+        flex-direction: row; /* Enlaces en paralelo si hay espacio */
+        justify-content: space-between;
+    }
 }
 
-#alert-message {
-    font-family: sans-serif;
-    font-size: 14px;
+/* Estilo para Alertas (Toasts) */
+#auth-alert {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Control del logo junto al texto */
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.logo-img-small {
+    width: 40px;  /* Ajusta este tamaño a tu gusto */
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Aseguramos que la tarjeta sea blanca y centrada */
+.login-card {
+    background: var(--bg-card, #ffffff);
+    padding: 40px;
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }

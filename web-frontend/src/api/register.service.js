@@ -7,19 +7,19 @@ async function loadQuestions() {
 
         const selects = document.querySelectorAll('.question-select');
         selects.forEach(select => {
-            // Limpiamos y añadimos la opción por defecto
             select.innerHTML = '<option value="" disabled selected>Selecciona una pregunta...</option>';
 
             questions.forEach(q => {
                 const option = document.createElement('option');
-                option.value = q;
-                option.textContent = q;
+                // CAMBIO AQUÍ:
+                // q ahora es {id: 1, question_text: "..."}
+                option.value = q.id;             // Guardamos el ID como valor (más limpio para la DB)
+                option.textContent = q.question_text; // Mostramos el texto al usuario
                 select.appendChild(option);
             });
         });
     } catch (e) {
         console.error("Error cargando preguntas", e);
-        // Fallback por si la API falla
         document.querySelectorAll('.question-select').forEach(s => s.innerHTML = '<option disabled>Error al cargar preguntas</option>');
     }
 }

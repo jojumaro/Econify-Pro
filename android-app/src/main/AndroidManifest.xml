@@ -13,13 +13,17 @@
         android:theme="@style/Theme.EconifyPro"
         android:usesCleartextTraffic="true">
 
+        <activity android:name="com.jjmr.econifypro.ui.ForgotPasswordActivity" android:exported="false" />
+        <activity android:name="com.jjmr.econifypro.ui.ResetPasswordActivity" android:exported="false" />
+
         <activity android:name="com.jjmr.econifypro.ui.MainActivity" />
         <activity android:name="com.jjmr.econifypro.ui.RegisterActivity" />
+
         <activity android:name="com.jjmr.econifypro.ui.LoginActivity"
             android:exported="true">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
