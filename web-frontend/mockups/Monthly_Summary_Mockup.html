@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Resumen mensual</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+<div class="monthly-summary-wrapper">
+<div class="monthly-summary-container card">
+
+    <!-- Header -->
+    <div class="summary-header">
+        <h1 class="section-title">Resumen mensual</h1>
+
+        <div class="month-selector">
+            <button class="month-btn"><i data-lucide="chevron-left"></i></button>
+            <span class="current-month">Febrero 2026</span>
+            <button class="month-btn"><i data-lucide="chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Bloque superior: KPIs + gráfico -->
+    <div class="summary-top-block">
+
+        <!-- KPIs -->
+        <div class="summary-kpis">
+            <div class="kpi-item">
+                <span class="kpi-label">Balance del mes</span>
+                <span class="kpi-value balance">+320 €</span>
+            </div>
+
+            <div class="kpi-item">
+                <span class="kpi-label">Ingresos</span>
+                <span class="kpi-value ingreso">1.200 €</span>
+            </div>
+
+            <div class="kpi-item">
+                <span class="kpi-label">Gastos</span>
+                <span class="kpi-value gasto">880 €</span>
+            </div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="summary-chart">
+            <div class="chart-circle">
+                <div class="chart-inner">73%</div>
+            </div>
+            <p class="chart-caption">
+                880 € en gastos · 73% de tus ingresos
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Bloque inferior: listas en línea -->
+    <div class="summary-lists-row">
+
+        <!-- Top categorías -->
+        <div class="summary-block">
+            <h3 class="section-subtitle">Top categorías</h3>
+
+            <div class="summary-list">
+                <div class="summary-item">
+                    <span>Supermercado</span>
+                    <span class="summary-amount">320 €</span>
+                </div>
+
+                <div class="summary-item">
+                    <span>Transporte</span>
+                    <span class="summary-amount">150 €</span>
+                </div>
+
+                <div class="summary-item">
+                    <span>Restaurantes</span>
+                    <span class="summary-amount">110 €</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transacciones del mes -->
+        <div class="summary-block">
+            <h3 class="section-subtitle">Transacciones del mes</h3>
+
+            <div class="summary-list">
+                <div class="summary-item">
+                    <span>Salario</span>
+                    <span class="summary-amount ingreso">+1.200 €</span>
+                </div>
+
+                <div class="summary-item">
+                    <span>Supermercado</span>
+                    <span class="summary-amount gasto">-80 €</span>
+                </div>
+
+                <div class="summary-item">
+                    <span>Transporte</span>
+                    <span class="summary-amount gasto">-30 €</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>

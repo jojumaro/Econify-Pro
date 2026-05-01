@@ -1,0 +1,167 @@
+/* css/layouts/auth.css */
+
+/* Contenedor principal: Centrado absoluto en pantalla */
+.login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    padding: 20px; /* Margen de seguridad para móviles */
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px; /* Tamaño optimizado para lectura */
+}
+
+.login-card {
+    background: var(--bg-card);
+    padding: 30px; /* Reducido para móvil por defecto */
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+/* Logo y Branding */
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.logo-icon {
+    background-color: var(--primary-blue);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.login-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: var(--text-primary);
+}
+
+/* Formulario e Inputs: Asegurar que nada se desborde */
+.login-form .input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-form input {
+    width: 100%;
+    box-sizing: border-box; /* Evita que el padding ensanche el input */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-top: 8px;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: var(--transition);
+}
+
+.login-btn:hover {
+    background-color: #357abd;
+    transform: translateY(-1px);
+}
+
+/* Navegación y enlaces inferiores */
+.login-links {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column; /* Apilados en móvil */
+    gap: 12px;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+.login-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Helpers de visibilidad */
+.hidden {
+    display: none !important;
+}
+
+/* Media Queries para pantallas medianas/grandes */
+@media (min-width: 480px) {
+    .login-card {
+        padding: 40px; /* Más aire en tablets/PC */
+    }
+
+    .login-links {
+        flex-direction: row; /* Enlaces en paralelo si hay espacio */
+        justify-content: space-between;
+    }
+}
+
+/* Estilo para Alertas (Toasts) */
+#auth-alert {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Control del logo junto al texto */
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.logo-img-small {
+    width: 40px;  /* Ajusta este tamaño a tu gusto */
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Aseguramos que la tarjeta sea blanca y centrada */
+.login-card {
+    background: var(--bg-card, #ffffff);
+    padding: 40px;
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,8 @@
+Django>=5.0
+djangorestframework
+django-cors-headers
+pandas
+reportlab
+openpyxl
+mysqlclient
+python-dotenv  # Para la seguridad de configuración (Punto 4.8)

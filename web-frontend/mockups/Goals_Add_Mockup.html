@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Crear meta</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <span class="logo-text">Econify Pro</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="arrow-right-left"></i>
+                    <span>Transacciones</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i data-lucide="target"></i>
+                    <span>Metas</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="user"></i>
+                    <span>Perfil</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+
+            <header class="header">
+                <h1 class="greeting">Crear meta</h1>
+                <div class="header-actions">
+                    <button class="icon-btn">
+                        <i data-lucide="bell"></i>
+                    </button>
+                    <div class="user-avatar">J</div>
+                </div>
+            </header>
+
+<div class="create-goal-card card">
+
+    <!-- Fila 1: Nombre + Cantidad -->
+    <div class="form-row">
+        <div class="form-group">
+            <label>Nombre de la meta</label>
+            <input type="text" placeholder="Ej. Ahorro vacaciones">
+        </div>
+
+        <div class="form-group">
+            <label>Cantidad objetivo (€)</label>
+            <input type="number" placeholder="Ej. 1200">
+        </div>
+    </div>
+
+    <!-- Fila 2: Fecha + Aportación inicial -->
+    <div class="form-row">
+        <div class="form-group">
+            <label>Fecha objetivo</label>
+            <input type="date">
+        </div>
+
+        <div class="form-group">
+            <label>Aportación inicial (€) <span class="optional">(opcional)</span></label>
+            <input type="number" placeholder="Ej. 50">
+        </div>
+    </div>
+
+    <!-- Fila 3: Icono -->
+    <div class="form-group">
+        <label>Icono de la meta</label>
+        <div class="goal-icon-selector">
+            <button class="icon-option selected" data-color="blue"><i data-lucide="piggy-bank"></i></button>
+            <button class="icon-option" data-color="green"><i data-lucide="home"></i></button>
+            <button class="icon-option" data-color="orange"><i data-lucide="graduation-cap"></i></button>
+            <button class="icon-option" data-color="purple"><i data-lucide="car"></i></button>
+            <button class="icon-option" data-color="pink"><i data-lucide="gift"></i></button>
+        </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="form-buttons">
+        <button class="cancel-btn">Cancelar</button>
+        <button class="save-btn">Crear meta</button>
+    </div>
+
+</div>
+
+
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+/* 1. LAYOUT E INDEPENDENCIA */
+/* Ajuste del contenedor principal para que no se encoja */
+
+
+/* Forzamos que los bloques ocupen el ancho disponible sin deformarse */
+.transactions-stats,
+.filters-container,
+.table-card {
+    width: 100%;
+    max-width: 1400px; /* Un límite mucho más amplio para que no se vea pequeño */
+    margin: 0 auto 25px auto;
+}
+
+.dashboard-header {
+    width: 100%;
+    max-width: 1400px; /* Para que alinee con tus otros bloques */
+    display: flex;
+    justify-content: space-between; /* Empuja el botón a la derecha */
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* 2. BOTÓN AÑADIR (Estilo Pro) */
+.btn-add {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+/* 3. FILTROS Y ORDENACIÓN (Mejorado) */
+.filters-container {
+    display: flex;
+    flex-direction: row; /* Fuerza la dirección horizontal */
+    flex-wrap: nowrap;   /* PROHIBE el salto de línea */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    margin: 25px 0;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    overflow-x: auto;    /* Si la pantalla es muy pequeña, permite scroll lateral en vez de romperse */
+}
+
+.filters-container .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0; /* Impide que los elementos se encojan y se corten los textos */
+}
+
+/* Grupo Individual: Icono + Label + Select */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap; /* Evita que "Ordenar por" se divida en dos líneas */
+}
+
+/* Selectores estilizados */
+.filters-container select {
+    width: auto;         /* Que el ancho lo mande el contenido o el min-width */
+    min-width: 160px;    /* Para que no se vean ridículamente pequeños */
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: #f8fafc;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+.filters-container select:focus {
+    border-color: var(--primary-blue);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Separador visual entre filtros y ordenación */
+.filter-divider {
+    width: 1px;
+    height: 28px;
+    background-color: var(--border-color);
+    margin: 0 10px;
+}
+
+/* Ajuste específico para el buscador si lo añades luego */
+.search-group {
+    flex-grow: 1; /* El buscador ocupa el espacio sobrante */
+    max-width: 300px;
+}
+
+/* 4. TABLA (Alineación y Estética Final) */
+.table-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Forzamos alineación idéntica en TH y TD */
+.custom-table th,
+.custom-table td {
+    padding: 20px 24px !important;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.custom-table th {
+    background: #fcfcfc;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-table td {
+    border-bottom: 1px solid #f8fafc;
+    font-size: 14px;
+}
+
+/* 5. DESCRIPCIÓN Y METAS (El alma del diseño) */
+.description-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.desc-text {
+    font-weight: 600;
+    color: #1e293b; /* Gris oscuro azulado para contraste */
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+.goal-tag {
+    font-size: 11.5px;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+/* 6. CATEGORÍAS (Color Azul Pro) */
+.badge {
+    background-color: #eff6ff; /* Azul muy suave */
+    color: #3b82f6;           /* Azul brillante */
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #dbeafe;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* 7. MONTOS */
+.amount-ingreso {
+    color: #22c55e !important;
+    font-weight: 700 !important;
+    white-space: nowrap;
+}
+
+.amount-gasto {
+    color: #ef4444 !important;
+    font-weight: 700 !important;
+    white-space: nowrap;
+}
+
+/* 8. ACCIONES Y ALINEACIÓN DERECHA */
+.text-right {
+    text-align: right !important;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: #f1f5f9;
+    color: var(--primary-blue);
+}
+
+.delete-btn:hover {
+    color: var(--red) !important;
+    background: #fff1f2 !important;
+}
+
+.transactions-stats {
+    display: flex;
+    justify-content: center; /* Agrupa los 3 elementos en el centro de la barra */
+    align-items: center;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.stat-pill {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-item {
+    width: 250px; /* <--- Esto evita que se amontonen como en la foto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: var(--border-color);
+    opacity: 0.5;
+}
+
+.stat-item:last-child {
+    border-right: none; /* Quitamos la línea al último para que no quede descentrado */
+}
+
+.stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.text-success { color: #22c55e; }
+.text-danger { color: #ef4444; }
+
+.stat-pill.balance {
+    padding-left: 25px;
+    border-left: 1px solid var(--border-color);
+}
+
+/* Aseguramos el centrado que definimos para el dashboard */
+.dashboard-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 9. RESPONSIVE */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 70px !important;
+        width: calc(100% - 70px) !important;
+        padding: 20px !important;
+    }
+}
+

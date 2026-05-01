@@ -1,0 +1,225 @@
+/* 1. Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Variables Globales */
+:root {
+    --primary-blue: #4A90D9;
+    --primary-teal: #2E9D8F;
+    --bg-sidebar: #F8F9FA;
+    --bg-main: #F0F2F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #2C3E50;
+    --text-secondary: #7F8C8D;
+    --text-muted: #95A5A6;
+    --border-color: #E8E8E8;
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+}
+
+/* 3. Estilos Base */
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 4. Sidebar fixed */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px !important;
+    height: 100vh;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+/* 5. Contenido Principal - CENTRADO REAL */
+.main-wrapper {
+    margin-left: 260px; /* Espacio para sidebar */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ESTO CENTRA TODO EL CONTENIDO */
+    min-height: 100vh;
+}
+
+.main-content {
+margin-left: 260px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px 20px;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Parche para centrado del login */
+.auth-page .main-wrapper {
+    margin-left: 0 !important;
+    justify-content: center;
+}
+
+/* 6. Sticky Footer REPARADO */
+.app-footer {
+    width: 100%;
+    max-width: 800px; /* Alineado con el contenido */
+    padding: 15px 0;
+    margin-top: 10rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.app-footer p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ESTILOS DE BOTONES */
+.btn-primary,
+.profile-form button[type="submit"],
+button.login-btn {
+    background-color: var(--primary-teal) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* 7. Responsividad */
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .main-wrapper { margin-left: 0; }
+    .main-content, .app-footer { max-width: 100%; padding: 20px; }
+}
+
+/* Unificar diseño de inputs */
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 14px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.profile-form input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1);
+}
+
+/* Fix alineación contenido del botón */
+.btn-primary,
+.profile-form button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espacio entre icono y texto */
+    line-height: 1;
+    padding: 12px 24px !important;
+}
+
+/* Tooltip básico para el icono info */
+.info-icon-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    margin-left: 5px;
+}
+
+.info-icon-container:hover::after {
+    content: "Mínimo 8 caracteres, incluye mayúsculas, números y símbolos.";
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: var(--shadow);
+}
+
+/* Contenedor del Label y el Icono */
+.password-label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    position: relative; /* Importante para el tooltip */
+}
+
+.password-label-wrapper label {
+    margin-bottom: 0 !important; /* Quitamos el margen para alinear con el icono */
+}
+
+/* Icono de Info y Tooltip */
+.info-icon {
+    display: inline-flex;
+    color: var(--text-secondary);
+    cursor: help;
+    position: relative;
+}
+
+.info-icon:hover::after {
+    content: "Mínimo 8 caracteres, incluye mayúsculas, números y símbolos.";
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+/* Flechita del tooltip */
+.info-icon:hover::before {
+    content: "";
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #333;
+    z-index: 100;
+}

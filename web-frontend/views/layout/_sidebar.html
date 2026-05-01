@@ -1,0 +1,46 @@
+{% load static %}
+<aside class="sidebar" style="padding: 24px; display: flex; flex-direction: column; height: 100vh;">
+    <div class="sidebar-logo" style="display: flex; align-items: center; gap: 12px; margin-bottom: 40px;">
+        <img src="{% static 'logo_econify_pro.png' %}" alt="Logo" style="width: 32px; height: 32px; object-fit: contain;">
+        <span class="logo-text" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">Econify Pro</span>
+    </div>
+
+    <nav class="nav-menu" style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
+        <a href="/dashboard/" class="nav-item {% if active_tab == 'dashboard' %}active{% endif %}"
+           style="text-decoration: none; color: {% if active_tab == 'dashboard' %}var(--primary-blue){% else %}var(--text-secondary){% endif %}; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; {% if active_tab == 'dashboard' %}background: rgba(37, 99, 235, 0.1);{% endif %} transition: all 0.2s;">
+            <i data-lucide="layout-dashboard" style="width: 20px; height: 20px;"></i>
+            <span style="font-weight: 500;">Dashboard</span>
+        </a>
+
+        <a href="/categories/" class="nav-item {% if active_tab == 'categories' %}active{% endif %}"
+           style="text-decoration: none; color: {% if active_tab == 'categories' %}var(--primary-blue){% else %}var(--text-secondary){% endif %}; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; {% if active_tab == 'categories' %}background: rgba(37, 99, 235, 0.1);{% endif %} transition: all 0.2s;">
+            <i data-lucide="tags" style="width: 20px; height: 20px;"></i>
+            <span style="font-weight: 500;">Categorías</span>
+        </a>
+
+        <a href="/transactions/" class="nav-item {% if active_tab == 'transactions' %}active{% endif %}"
+           style="text-decoration: none; color: {% if active_tab == 'transactions' %}var(--primary-blue){% else %}var(--text-secondary){% endif %}; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; {% if active_tab == 'transactions' %}background: rgba(37, 99, 235, 0.1);{% endif %} transition: all 0.2s;">
+            <i data-lucide="arrow-right-left" style="width: 20px; height: 20px;"></i>
+            <span style="font-weight: 500;">Transacciones</span>
+        </a>
+
+        <a href="/goals/" class="nav-item {% if active_tab == 'goals' %}active{% endif %}"
+           style="text-decoration: none; color: {% if active_tab == 'goals' %}var(--primary-blue){% else %}var(--text-secondary){% endif %}; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; {% if active_tab == 'goals' %}background: rgba(37, 99, 235, 0.1);{% endif %} transition: all 0.2s;">
+            <i data-lucide="target" style="width: 20px; height: 20px;"></i>
+            <span style="font-weight: 500;">Metas</span>
+        </a>
+
+        <a href="/profile/" class="nav-item {% if active_tab == 'profile' %}active{% endif %}"
+           style="text-decoration: none; color: {% if active_tab == 'profile' %}var(--primary-blue){% else %}var(--text-secondary){% endif %}; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; {% if active_tab == 'profile' %}background: rgba(37, 99, 235, 0.1);{% endif %} transition: all 0.2s;">
+            <i data-lucide="user" style="width: 20px; height: 20px;"></i>
+            <span style="font-weight: 500;">Perfil</span>
+        </a>
+    </nav>
+
+<div class="sidebar-footer" style="padding-top: 20px; border-top: 1px solid var(--border-color);">
+<a href="javascript:void(0);" id="logout-link" class="nav-item" style="text-decoration: none; color: #ef4444; display: flex; align-items: center; gap: 12px; padding: 12px;">
+    <i data-lucide="log-out" style="width: 20px; height: 20px;"></i>
+    <span style="font-weight: 600;">Cerrar Sesión</span>
+</a>
+</div>
+</aside>

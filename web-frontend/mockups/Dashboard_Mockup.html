@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Dashboard</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body class="dark">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <span class="logo-text">Econify Pro</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="arrow-right-left"></i>
+                    <span>Transacciones</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="target"></i>
+                    <span>Metas</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="greeting">Hola, Jorge</h1>
+                <div class="header-actions">
+                    <button class="icon-btn">
+                        <i data-lucide="bell"></i>
+                    </button>
+                    <div class="user-avatar">J</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Summary Cards Row -->
+                <div class="summary-cards">
+                    <!-- Expenses Card -->
+                    <div class="card summary-card expenses-card">
+                        <div class="card-content">
+                            <div class="amount">+€3,254.50</div>
+                            <div class="label">
+                                Gastos este mes
+                                <i data-lucide="info" class="info-icon"></i>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 13%"></div>
+                            </div>
+                            <span class="progress-text">13.00%</span>
+                        </div>
+                        <button class="card-arrow">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Savings Goal Card -->
+                    <div class="card summary-card savings-card">
+                        <div class="card-content">
+                            <div class="amount">+€3,500.00</div>
+                            <div class="label">Ahorro objetivo</div>
+                            <div class="progress-bar savings-progress">
+                                <div class="progress-fill" style="width: 40%"></div>
+                            </div>
+                            <span class="progress-percent">40%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <!-- Category Chart -->
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3 style="color:#444444">Gastos por categoría</h3>
+                            <button class="menu-btn">
+                                <i data-lucide="more-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="chart-content">
+                            <div class="legend">
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background: #4A90D9;"></span>
+                                    <span style="color:#444444">Alimentación</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background: #E8A87C;"></span>
+                                    <span style="color:#444444">Entretenimiento</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background: #5CB85C;"></span>
+                                    <span style="color:#444444">Transporte</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background: #5BC0DE;"></span>
+                                    <span style="color:#444444">Salud</span>
+                                </div>
+                            </div>
+                            <div class="donut-chart">
+                                <svg viewBox="0 0 100 100" class="donut">
+                                    <!-- Background circle -->
+                                    <circle cx="50" cy="50" r="35" fill="none" stroke="#E8E8E8" stroke-width="20"/>
+                                    <!-- Segments -->
+                                    <circle cx="50" cy="50" r="35" fill="none" stroke="#4A90D9" stroke-width="20"
+                                            stroke-dasharray="55 165" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                                    <circle cx="50" cy="50" r="35" fill="none" stroke="#2E9D8F" stroke-width="20"
+                                            stroke-dasharray="45 165" stroke-dashoffset="-55" transform="rotate(-90 50 50)"/>
+                                    <circle cx="50" cy="50" r="35" fill="none" stroke="#E8A87C" stroke-width="20"
+                                            stroke-dasharray="35 165" stroke-dashoffset="-100" transform="rotate(-90 50 50)"/>
+                                    <circle cx="50" cy="50" r="35" fill="none" stroke="#5CB85C" stroke-width="20"
+                                            stroke-dasharray="30 165" stroke-dashoffset="-135" transform="rotate(-90 50 50)"/>
+                                </svg>
+                                <div class="donut-center">
+                                    <span style="color:#444444" class="donut-amount">€.600.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Line Chart -->
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>Gastos vs Ahorro</h3>
+                            <button class="menu-btn">
+                                <i data-lucide="more-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="line-chart-container">
+                            <svg viewBox="0 0 300 120" class="line-chart">
+                                <!-- Grid lines -->
+                                <line x1="0" y1="30" x2="300" y2="30" stroke="#E8E8E8" stroke-width="1"/>
+                                <line x1="0" y1="60" x2="300" y2="60" stroke="#E8E8E8" stroke-width="1"/>
+                                <line x1="0" y1="90" x2="300" y2="90" stroke="#E8E8E8" stroke-width="1"/>
+
+                                <!-- Line 1 - Green -->
+                                <path d="M 0,80 Q 50,70 100,60 T 200,40 T 300,20"
+                                      fill="none" stroke="#2E9D8F" stroke-width="2"/>
+                                <circle cx="100" cy="60" r="3" fill="#2E9D8F"/>
+                                <circle cx="200" cy="40" r="3" fill="#2E9D8F"/>
+                                <circle cx="300" cy="20" r="3" fill="#2E9D8F"/>
+
+                                <!-- Line 2 - Red/Orange -->
+                                <path d="M 0,90 Q 50,85 100,75 T 200,65 T 300,55"
+                                      fill="none" stroke="#E74C3C" stroke-width="2"/>
+
+                                <!-- Line 3 - Yellow/Gold -->
+                                <path d="M 0,70 Q 50,75 100,80 T 200,70 T 300,75"
+                                      fill="none" stroke="#F0AD4E" stroke-width="2"/>
+                                <circle cx="100" cy="80" r="3" fill="#F0AD4E"/>
+                                <circle cx="200" cy="70" r="3" fill="#F0AD4E"/>
+
+                                <!-- Line 4 - Blue -->
+                                <path d="M 0,50 Q 50,55 100,50 T 200,45 T 300,40"
+                                      fill="none" stroke="#4A90D9" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="chart-tabs">
+                            <button style="color:#444444" class="tab">Últimos 7 días</button>
+                            <button class="tab active">Último mes</button>
+                            <button style="color:#444444" class="tab">Últimos 6 meses</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="bottom-row">
+                    <!-- Recent Transactions -->
+                    <div class="card transactions-card">
+                        <h3 style="color:#444444" class="section-title">Transacciones recientes</h3>
+                        <div class="transactions-list">
+                            <div class="transaction-item">
+                                <div class="transaction-icon green">
+                                    <i data-lucide="shopping-bag"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <div style="color:#444444" class="transaction-name">Supermercado</div>
+                                    <div class="transaction-date">Alimento 2026</div>
+                                </div>
+                                <div class="transaction-amount negative">-€75.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon orange">
+                                    <i data-lucide="car"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <div style="color:#444444" class="transaction-name">Peaje Autopista</div>
+                                    <div style="color:#444444" class="transaction-date">Transporte</div>
+                                </div>
+                                <div class="transaction-amount negative">-€10.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon blue">
+                                    <i data-lucide="tv"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <div style="color:#444444" class="transaction-name">Netflix</div>
+                                    <div class="transaction-date">Utrona | Entretenimiento</div>
+                                </div>
+                                <div class="transaction-amount negative">-€14.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Goals -->
+                    <div class="card goals-card">
+                        <h3 style="color:#444444" class="section-title">Metas activas</h3>
+                        <div class="goal-item">
+                            <div class="goal-header">
+                                <span style="color:#444444" class="goal-name">Ahorrar para vacaciones</span>
+                                <span class="goal-percent">40%</span>
+                            </div>
+                            <div style="color:#444444" class="goal-amount">€3,500.00</div>
+                            <div class="goal-progress-container">
+                                <div class="goal-progress-bar">
+                                    <div class="goal-progress-fill" style="width: 40%"></div>
+                                </div>
+                                <span style="color:#444444" class="goal-badge">€3,500.00</span>
+                            </div>
+                            <div class="goal-footer">
+                                <span style="color:#444444" class="goal-date">30 Julio, 2024</span>
+                                <span style="color:#444444" class="goal-total">€1,400.00</span>
+                            </div>
+                        </div>
+                        <button class="new-goal-btn">
+                            <i data-lucide="plus"></i>
+                            Nueva Meta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+/* css/layouts/dashboard.css */
+
+/* 1. Estructura Principal (Layout) */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar - Menú lateral */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+}
+
+.main-content {
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 2. Header y Saludo */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.user-greeting h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* 3. Resumen de Tarjetas (Ingresos/Gastos) */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.summary-card {
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-card.income { border-top: 4px solid var(--green); }
+.summary-card.expenses { border-top: 4px solid var(--red); }
+
+/* 4. Sección de Metas (Adaptación del Carrusel de Android) */
+.goals-section {
+    margin-bottom: 32px;
+}
+
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.goal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.goal-amount {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* 5. Lista de Transacciones Recientes */
+.transactions-list {
+    margin-top: 16px;
+}
+
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.transaction-row:last-child { border-bottom: none; }
+
+.trans-info { display: flex; align-items: center; gap: 12px; }
+.trans-amount { font-weight: 600; }
+.trans-amount.negative { color: var(--red); }
+.trans-amount.positive { color: var(--green); }
+
+.transactions-list,
+.goals-grid {
+    flex-grow: 1;      /* CLAVE: Empuja el contenido para llenar la tarjeta */
+    overflow-y: auto;  /* Si hay mucho contenido, crea scroll interno */
+    max-height: 450px; /* Opcional: Define un tope para que no sea infinito */
+    padding-right: 8px; /* Espacio para el scrollbar */
+}
+
+/* Estilo para el scrollbar (opcional, para que quede elegante) */
+.transactions-list::-webkit-scrollbar,
+.goals-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.transactions-list::-webkit-scrollbar-thumb,
+.goals-grid::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+/* 6. Responsive */
+@media (max-width: 1024px) {
+    .dashboard-grid-bottom {
+        grid-template-columns: 1fr; /* En tablets/móvil uno debajo de otro */
+    }
+
+    .transactions-list,
+    .goals-grid {
+        max-height: none; /* Quitamos el límite en móvil */
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar { width: 70px; padding: 15px; }
+    .sidebar .logo-text, .sidebar span { display: none; }
+    .main-content { margin-left: 70px; padding: 20px; }
+}
+
+.dashboard-grid-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    gap: 25px; /* El mismo espacio que los de arriba */
+    margin-top: 25px;
+    align-items: stretch;
+}
+
+/* Ajuste del Grid para que las columnas ocupen el espacio real */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr; /* Ajusta la proporción si quieres */
+    gap: 24px;
+    width: 100%;
+    align-items: start;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 0;
+    width: 100%;
+    border: 1px solid var(--border-color);
+
+    /* Configuración para nivelar contenido interno */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ocupa el alto que le da el grid-bottom */
+}
+
+.card-header {
+    margin-bottom: 20px;
+    flex-shrink: 0; /* Que no se encoja */
+}

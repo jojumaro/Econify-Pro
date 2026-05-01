@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econify Pro - Perfil</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <span class="logo-text">Econify Pro</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="arrow-right-left"></i>
+                    <span>Transacciones</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="target"></i>
+                    <span>Metas</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i data-lucide="user"></i>
+                    <span>Perfil</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 class="greeting">Tu perfil</h1>
+                <div class="header-actions">
+                    <button class="icon-btn">
+                        <i data-lucide="bell"></i>
+                    </button>
+                    <div class="user-avatar">J</div>
+                </div>
+            </header>
+
+            <div class="profile-grid">
+
+                <!-- Información personal -->
+                <div class="profile-section card">
+                    <h3 class="profile-section-title">Información personal</h3>
+
+                    <div class="profile-avatar editable-avatar">
+                        <i data-lucide="camera" class="avatar-camera"></i>
+                        J
+                    </div>
+
+                    <div class="input-group">
+                        <label>Nombre</label>
+                        <input type="text" value="Jorge">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Correo electrónico</label>
+                        <input type="email" value="jorge@example.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Teléfono</label>
+                        <input type="text" placeholder="+34 600 000 000">
+                    </div>
+                </div>
+
+                <!-- Seguridad -->
+                <div class="profile-section card">
+                    <h3 class="profile-section-title">Seguridad</h3>
+
+                    <div class="input-group">
+                        <label>Nueva contraseña</label>
+                        <input type="password" placeholder="••••••••">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Confirmar contraseña</label>
+                        <input type="password" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <!-- Preferencias -->
+                <div class="preferences-section card">
+                    <h3 class="profile-section-title">Preferencias</h3>
+
+                    <div class="preferences-row">
+                        <div class="toggle-group">
+                            <label>Notificaciones email</label>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-group">
+                            <label>Notificaciones push</label>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-group">
+                            <label>Modo oscuro</label>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="profile-buttons">
+                    <button class="save-btn">Guardar cambios</button>
+                    <button class="logout-btn">Cerrar sesión</button>
+                    <button class="delete-btn">Eliminar cuenta</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

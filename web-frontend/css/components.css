@@ -1,0 +1,241 @@
+/* css/components.css */
+
+/* 0. RESET Y REGLA DE ORO */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 1. Tarjeta Principal (Ancho fijo suficiente para evitar el caos) */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    width: 650px; /* Ancho ideal para 2 columnas con aire */
+    margin: 20px auto;
+}
+
+/* 2. Grupos de entrada */
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.input-group input,
+.security-box select,
+.security-box input {
+    width: 100% !important;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    background-color: white;
+    outline: none;
+}
+
+/* 3. FILAS (Layout Pro de 2 columnas) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide en dos columnas iguales */
+    gap: 20px;
+    margin-bottom: 15px;
+    align-items: flex-end;
+}
+
+/* 4. MEDIDOR DE PASSWORD */
+.strength-meter {
+    margin-top: 8px;
+}
+
+.strength-bar-container {
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #d1d5db;
+}
+
+#strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#strength-text {
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 4px;
+    display: block;
+}
+
+/* 5. CAJAS DE SEGURIDAD (Compactas y Alineadas) */
+.security-box {
+    background-color: #f9fafb;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.security-box label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+/* 6. TOOLTIP (Cero estorbos visuales) */
+.password-label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 4px;
+}
+
+.info-icon {
+    position: relative; /* VITAL: El tooltip se posicionará respecto a este icono */
+    color: #3b82f6;
+    cursor: help;
+    display: inline-flex;
+    align-items: center;
+}
+
+.info-icon i {
+    width: 14px;
+    height: 14px;
+}
+
+/* El texto solo aparece al pasar el ratón */
+.info-icon::after {
+    /* El texto que ya definimos */
+    content: "Para una mayor seguridad, usa al menos 8 caracteres combinando letras mayúsculas, minúsculas, números y un carácter especial (ej. @, #, $).";
+
+    /* POSICIONAMIENTO */
+    position: absolute;
+    bottom: 140%;
+    left: 0;
+    transform: none;
+
+    /* DISEÑO Y ANCHO */
+    width: 280px;         /* Ancho aproximado del textbox */
+    white-space: normal;
+    line-height: 1.5;
+    text-align: left;
+
+    /* ESTILO */
+    background: #1f2937;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+
+    /* ANIMACIÓN */
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease-in-out;
+}
+
+.info-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 7. BOTÓN */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 3. El texto que ahora te sale mal (Corregido) */
+.tooltip-text {
+    /* POSICIONAMIENTO */
+    position: absolute;   /* Saca el texto del flujo: ya no empuja los inputs ni etiquetas */
+    bottom: 150%;        /* Lo sitúa arriba del icono */
+    left: 50%;
+    transform: translateX(-50%); /* Lo centra exactamente */
+
+    /* ESTADO INICIAL (OCULTO) */
+    visibility: hidden;   /* No se ve */
+    opacity: 0;           /* Transparente */
+    pointer-events: none; /* No se puede clickear si está oculto */
+
+    /* DISEÑO DEL GLOBO */
+    width: 200px;
+    background-color: #1f2937;
+    color: #ffffff;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 1.4;
+    z-index: 999;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* 4. La "colita" o flecha del tooltip */
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1f2937 transparent transparent transparent;
+}
+
+/* RESPONSIVE (Si la pantalla es pequeña, se pone en una columna) */
+@media (max-width: 700px) {
+    .card { width: 95%; padding: 20px; }
+    .form-row { grid-template-columns: 1fr; }
+}
+
+/* Estilo específico para las preguntas de seguridad dentro del modal */
+#security-modal .input-group label {
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+#security-modal .input-group input {
+    border: 1.5px solid var(--border-color);
+    transition: border-color 0.2s;
+}
+
+#security-modal .input-group input:focus {
+    border-color: var(--primary-blue);
+}
